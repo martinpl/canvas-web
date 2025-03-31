@@ -13,4 +13,9 @@ class Log extends Model
         'message',
         'device_id',
     ];
+
+    public function device()
+    {
+        return $this->belongsTo(Device::class);
+    }
 }
