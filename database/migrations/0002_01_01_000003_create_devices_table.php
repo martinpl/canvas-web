@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('battery')->nullable();
             $table->json('schedule')->default(json_encode([]));
+            $table->string('key');
         });
     }
 
