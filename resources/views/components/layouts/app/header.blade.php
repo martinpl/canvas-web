@@ -1,3 +1,31 @@
+@props([
+    'title',
+    'menus' => [
+        [
+            'key' => 'dashboard',
+            'title' => __('Dashboard'),
+            'icon' => 'layout-grid',
+        ],
+        [
+            'key' => 'apps',
+            'title' => __('Apps'),
+            'icon' => 'layout-grid',
+        ],
+        [
+            'key' => 'logs',
+            'title' => __('Logs'),
+            'icon' => 'layout-grid',
+        ],
+    ],
+    'sideMenus' => [
+        [
+            'href' => 'https://github.com/martinpl/canvas-web',
+            'title' => __('Repository'),
+            'icon' => 'folder-git-2'
+        ]
+    ]
+])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
@@ -12,35 +40,27 @@
             </a>
 
             <flux:navbar class="-mb-px max-lg:hidden">
-                <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
-                </flux:navbar.item>
+                @foreach($menus as $menu)
+                    <flux:navbar.item :icon="$menu['icon']" :href="route($menu['key'])" :current="request()->routeIs($menu['key'])" wire:navigate>
+                        {{ $menu['title'] }}
+                    </flux:navbar.item>
+                @endforeach
             </flux:navbar>
 
             <flux:spacer />
 
             <flux:navbar class="mr-1.5 space-x-0.5 py-0!">
-                <flux:tooltip :content="__('Search')" position="bottom">
-                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" :label="__('Search')" />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Repository')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="folder-git-2"
-                        href="https://github.com/laravel/livewire-starter-kit"
-                        target="_blank"
-                        :label="__('Repository')"
-                    />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Documentation')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="book-open-text"
-                        href="https://laravel.com/docs/starter-kits"
-                        target="_blank"
-                        label="Documentation"
-                    />
-                </flux:tooltip>
+                @foreach($sideMenus as $sideMenu)
+                    <flux:tooltip :content="__('Repository')" position="bottom">
+                        <flux:navbar.item
+                            class="h-10 max-lg:hidden [&>div>svg]:size-5"
+                            :icon="$sideMenu['icon']"
+                            :href="$sideMenu['href']"
+                            :label="$sideMenu['title']"
+                            target="_blank"
+                        />
+                    </flux:tooltip>
+                @endforeach
             </flux:navbar>
 
             <!-- Desktop User Menu -->
@@ -98,22 +118,22 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')">
-                    <flux:navlist.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
-                    </flux:navlist.item>
+                    @foreach($menus as $menu)
+                        <flux:navlist.item :icon="$menu['icon']" :href="route($menu['key'])" :current="request()->routeIs($menu['key'])" wire:navigate>
+                            {{ $menu['title'] }}
+                        </flux:navlist.item>
+                    @endforeach
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
 
             <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
+                @foreach($sideMenus as $sideMenu)
+                    <flux:navlist.item :icon="$sideMenu['icon']" :href="$sideMenu['href']" target="_blank">
+                        {{ $sideMenu['title'] }}
+                    </flux:navlist.item>
+                @endforeach
             </flux:navlist>
         </flux:sidebar>
 
