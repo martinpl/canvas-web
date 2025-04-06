@@ -40,4 +40,16 @@ class Device extends Model
         $this->key = Str::random(16);
         $this->save();
     }
+
+    // TODO:Add schedule matching, better return?
+    public function currentSchedule()
+    {
+        if (empty($this->schedule[0]['app'])) {
+            return;
+        }
+
+        $app = App::find($this->schedule[0]['app']);
+
+        return $app->class();
+    }
 }
