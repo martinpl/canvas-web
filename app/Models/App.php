@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class App extends Model
 {
@@ -18,5 +19,13 @@ class App extends Model
         return [
             'metadata' => 'array',
         ];
+    }
+
+    public function class()
+    {
+        $className = Str::studly($this->app);
+        $class = "Apps\\{$className}\\{$className}";
+
+        return $class;
     }
 }
