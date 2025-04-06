@@ -12,10 +12,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/private/{path}', App\Http\Controllers\PrivateFileController::class)->where('path', '.*');
 });
 
-Route::any('/device/info/{id}/{key}', \App\Http\Controllers\DeviceInfoController::class)
-    ->name('device.info');
-
-Route::get('/device/image/{id}/{key}', \App\Http\Controllers\DeviceImageController::class)
-    ->name('device.image');
-
 require __DIR__.'/auth.php';
