@@ -19,8 +19,8 @@ class AppsServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function boot()
     {
-        Volt::mount([base_path()]); // Mounting the whole base folder is not ideal, but we want to have apps namespace
-        View::addLocation(base_path());
+        Volt::mount([base_path('apps')]);
+        View::addLocation(base_path('apps'));
         $this->discoverLivewireComponents(base_path('apps'), 'Apps');
     }
 
