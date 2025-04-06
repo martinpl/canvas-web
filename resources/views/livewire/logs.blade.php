@@ -11,7 +11,7 @@ class extends Component {
     #[Computed]
     public function list() 
     {
-        return Log::with('device')->get();
+        return Log::with('device')->orderBy('created_at', 'desc')->get();
     }
 
     public function remove($id) 
