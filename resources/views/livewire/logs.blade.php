@@ -1,11 +1,37 @@
 <?php
 
+use App\Models\Log;
 use Livewire\Volt\Component;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Computed;
 
-new class extends Component {}; ?>
+new 
+#[Title('Logs')]
+class extends Component {
+    #[Computed]
+    public function list() 
+    {
+        return Log::with('device')->get();
+    }
+
+    public function remove($id) 
+    {
+        Log::where('id', $id)->delete();
+    }
+
+    public function removeAll() 
+    {
+        Log::truncate();
+    }
+}; ?>
 
 <div>
-    @foreach(App\Models\Log::with('device')->get() as $log)
+    @if ($this->list->isNotEmpty())
+        <flux:button wire:click="removeAll">
+            Remove all
+        </flux:button>
+    @endif
+    @forelse($this->list as $log)
         <div>
             {{ $log->type }}
             {{ $log->message }}
@@ -15,6 +41,11 @@ new class extends Component {}; ?>
             <span title="{{ $log->created_at }}">
                 {{ $log->created_at->diffForHumans() }}
             </span>
+            <flux:button wire:click="remove({{ $log->id }})">
+                Remove
+            </flux:button>
         </div>
-    @endforeach
+    @empty
+        Empty
+    @endforelse
 </div>
