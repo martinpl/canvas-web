@@ -34,4 +34,10 @@ class Device extends Model
     {
         return route('device.image', ['id' => $this->id, 'key' => $this->key]);
     }
+
+    public function refreshKey()
+    {
+        $this->key = Str::random(16);
+        $this->save();
+    }
 }
