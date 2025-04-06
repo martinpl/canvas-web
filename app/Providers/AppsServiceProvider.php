@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Foundation\AppsManager;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
@@ -21,7 +20,7 @@ class AppsServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         Volt::mount([base_path('apps')]);
         View::addLocation(base_path('apps'));
-        $this->discoverLivewireComponents(base_path('apps'), 'Apps');
+        $this->resolveLivewireMissingComponent(base_path('apps'), 'Apps');
     }
 
     protected function classAutoloader($directory, $namespace)
@@ -40,14 +39,21 @@ class AppsServiceProvider extends \Illuminate\Support\ServiceProvider
         });
     }
 
-    private function discoverLivewireComponents($directory, $namespace)
+    private function resolveLivewireMissingComponent($directory, $namespace)
     {
-        foreach (File::allFiles($directory) as $file) {
-            $class = $namespace.'\\'.str_replace(['/', '.php'], ['\\', ''], $file->getRelativePathname());
-            if (class_exists($class) && is_subclass_of($class, \Livewire\Component::class)) {
-                $name = strtolower(str_replace('\\', '.', $class));
-                Livewire::component($name, $class);
+        Livewire::resolveMissingComponent(function ($name) use ($namespace) {
+            if (! str_contains($name, '.')) {
+                return;
             }
-        }
+
+            $class = explode('.', $name);
+            $class = array_map(fn ($item) => Str::studly($item), $class);
+            $class = [$namespace, ...$class];
+            $class = implode('\\', $class);
+
+            if (class_exists($class) && is_subclass_of($class, \Livewire\Component::class)) {
+                return $class;
+            }
+        });
     }
 }
