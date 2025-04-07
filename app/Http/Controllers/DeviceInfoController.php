@@ -14,8 +14,8 @@ class DeviceInfoController
             abort(404);
         }
 
-        if (request()->input('battery')) {
-            $device->battery = request()->input('battery');
+        if (request()->input('batteryPercent')) {
+            $device->battery = request()->input('batteryPercent');
             $device->save();
         }
 
