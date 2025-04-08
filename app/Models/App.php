@@ -26,6 +26,6 @@ class App extends Model
         $className = Str::studly($this->app);
         $class = "Apps\\{$className}\\{$className}";
 
-        return $class;
+        return new $class($this->id);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\Models\Device;
 
 class DeviceImageController
@@ -14,7 +15,8 @@ class DeviceImageController
         }
 
         $class = $device->currentSchedule();
-        $output = (new $class($id))();
-        // TODO:Image processing
+        $output = $class();
+        (new Image($output))();
+        // TODO: Cleanup
     }
 }
