@@ -12,7 +12,7 @@ class AppsServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function register()
     {
-        $this->classAutoloader('apps', 'Apps');
+        $this->classAutoloader('apps', 'CanvasApps');
         $this->app->bind('apps', AppsManager::class, true);
     }
 
@@ -20,7 +20,7 @@ class AppsServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         Volt::mount([base_path('apps')]);
         View::addLocation(base_path('apps'));
-        $this->resolveLivewireMissingComponent(base_path('apps'), 'Apps');
+        $this->resolveLivewireMissingComponent('CanvasApps');
     }
 
     protected function classAutoloader($directory, $namespace)
@@ -39,7 +39,7 @@ class AppsServiceProvider extends \Illuminate\Support\ServiceProvider
         });
     }
 
-    private function resolveLivewireMissingComponent($directory, $namespace)
+    private function resolveLivewireMissingComponent($namespace)
     {
         Livewire::resolveMissingComponent(function ($name) use ($namespace) {
             if (! str_contains($name, '.')) {

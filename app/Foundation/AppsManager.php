@@ -19,7 +19,7 @@ class AppsManager
     {
         foreach (File::directories(base_path('apps')) as $folder) {
             $appNamespace = Str::studly(basename($folder));
-            $class = "Apps\\{$appNamespace}\\{$appNamespace}";
+            $class = $this->class($appNamespace);
             if (class_exists($class) && is_subclass_of($class, App::class)) {
                 $key = basename($folder);
                 $this->apps[$key] = Str::headline($key);
@@ -30,5 +30,10 @@ class AppsManager
     public function list()
     {
         return $this->apps;
+    }
+
+    public function class($namespace)
+    {
+        return "CanvasApps\\{$namespace}\\{$namespace}";
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Apps\Images;
+namespace CanvasApps\Images;
 
 use Illuminate\Support\Facades\Storage;
 

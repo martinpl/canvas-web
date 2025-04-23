@@ -2,6 +2,7 @@
 
 namespace Canvas\Models;
 
+use Canvas\Facades\Apps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -24,7 +25,7 @@ class App extends Model
     public function class()
     {
         $className = Str::studly($this->app);
-        $class = "Apps\\{$className}\\{$className}";
+        $class = Apps::class($className);
 
         return new $class($this->id);
     }
