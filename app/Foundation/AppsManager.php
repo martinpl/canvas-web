@@ -17,12 +17,7 @@ class AppsManager
 
     protected function loadApps()
     {
-        $path = base_path('apps');
-        if (! File::exists($path)) {
-            File::makeDirectory($path);
-        }
-
-        foreach (File::directories($path) as $folder) {
+        foreach (File::directories(base_path('apps')) as $folder) {
             $appNamespace = Str::studly(basename($folder));
             $class = "Apps\\{$appNamespace}\\{$appNamespace}";
             if (class_exists($class) && is_subclass_of($class, App::class)) {
