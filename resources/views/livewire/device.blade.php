@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\App;
-use App\Models\Device;
+use Canvas\Models\App;
+use Canvas\Models\Device;
 use Livewire\Volt\Component;
 use Illuminate\Support\Carbon;
 

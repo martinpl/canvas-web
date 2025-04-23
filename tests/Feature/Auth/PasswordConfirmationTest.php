@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Canvas\Models\User;
 use Livewire\Volt\Volt;
 
 test('confirm password screen can be rendered', function () {

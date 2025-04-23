@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace Canvas;
 
 use Livewire\Wireable;
 
 abstract class App implements Wireable
 {
-    private \App\Models\App $app;
+    private \Canvas\Models\App $app;
 
     public function __construct(private $id)
     {
-        $this->app = \App\Models\App::find($id);
+        $this->app = \Canvas\Models\App::find($id);
     }
 
     public function metadata(): array

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Canvas\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Volt;
 

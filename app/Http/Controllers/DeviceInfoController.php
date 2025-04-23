@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Canvas\Http\Controllers;
 
-use App\Models\Device;
-use App\Models\Log;
+use Canvas\Models\Device;
+use Canvas\Models\Log;
 
 class DeviceInfoController
 {

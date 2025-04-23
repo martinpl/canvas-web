@@ -1,7 +1,7 @@
 <?php
 
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\VoltServiceProvider::class,
-    App\Providers\AppsServiceProvider::class,
+    Canvas\Providers\AppServiceProvider::class,
+    Canvas\Providers\VoltServiceProvider::class,
+    Canvas\Providers\AppsServiceProvider::class,
 ];

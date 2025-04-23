@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Foundation;
+namespace Canvas\Foundation;
 
-use App\App;
+use Canvas\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 

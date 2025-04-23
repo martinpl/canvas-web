@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Canvas\Http\Controllers;
 
-use App\Models\App;
+use Canvas\Models\App;
 
 class AppController
 {

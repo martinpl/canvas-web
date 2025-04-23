@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Device;
+use Canvas\Models\Device;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Canvas\Http\Controllers;
 
-use App\Image;
-use App\Models\Device;
+use Canvas\Image;
+use Canvas\Models\Device;
 
 class DeviceImageController
 {

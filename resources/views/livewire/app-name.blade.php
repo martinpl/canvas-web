@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Device;
+use Canvas\Models\Device;
 use Livewire\Volt\Component;
 
 new class extends Component

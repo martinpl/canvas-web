@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Canvas\Http\Controllers;
 
 abstract class Controller
 {

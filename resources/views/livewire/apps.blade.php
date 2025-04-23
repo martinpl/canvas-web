@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\App;
-use App\Facades\Apps;
+use Canvas\Models\App;
+use Canvas\Facades\Apps;
 use Livewire\Volt\Component;
 
 new class extends Component

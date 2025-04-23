@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace Canvas\Providers;
 
-use App\Foundation\AppsManager;
+use Canvas\Foundation\AppsManager;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Livewire\Livewire;

@@ -4,7 +4,7 @@ namespace Apps\Images;
 
 use Illuminate\Support\Facades\Storage;
 
-class Images extends \App\App
+class Images extends \Canvas\App
 {
     public function __invoke()
     {

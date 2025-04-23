@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Canvas;
 
 // TODO: Add credits
 // TODO: Cleanup

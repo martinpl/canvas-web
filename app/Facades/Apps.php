@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Facades;
+namespace Canvas\Facades;
 
-use App\Foundation\AppsManager;
+use Canvas\Foundation\AppsManager;
 
 class Apps extends \Illuminate\Support\Facades\Facade
 {

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Log;
+use Canvas\Models\Log;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Computed;
